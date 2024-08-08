@@ -18,5 +18,9 @@ export default class ProductCartRepository{
         )
     }
 
+    async findByCartId(cartId: number){
+        return await ProductCart.findAll({where: {cartId}});
+    }
+
 
 }

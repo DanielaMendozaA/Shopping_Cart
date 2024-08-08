@@ -19,10 +19,12 @@ export default class OrderRepository{
         return await OrderModel.findAll()
     }
 
-    async findProductsByIdOrder(id: number){
-        return await OrderModel.findByPk(id, {include: [ProductModel]})
+    async findById(id: number): Promise<OrderModel | null>{
+        return await OrderModel.findByPk(id)
     }
 
-    
+    async findByUserId(userId: number): Promise<OrderModel[]>{
+        return await OrderModel.findAll({where: {userId}})
+    }
 
 }

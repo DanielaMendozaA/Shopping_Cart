@@ -8,10 +8,14 @@ export default class CartRepository{
     }
 
     async updateTotal(id: number, total: number){
-        return await CartModel.update({total: total, id: id},{where: {id}})
+        return await CartModel.update({total: total},{where: {id}})
     }
 
     async findCartById(id: number){
         return await CartModel.findByPk(id)
+    }
+
+    async findAllCarts(){
+        return await CartModel.findAll()
     }
 }

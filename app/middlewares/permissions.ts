@@ -32,6 +32,10 @@ export default class UserPermissions{
                         break;  
                     case 'update':
                         hasPermission = permissionByEntity.canUpdate
+                        break;
+                    case 'readOne':
+                        hasPermission = permissionByEntity.canGetByOne
+                        break;
                     
                 }
 

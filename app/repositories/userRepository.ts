@@ -22,5 +22,13 @@ export default class UserRepository{
     async findByEmail(email: string){
         return await UserModel.findOne({where: {email}});
     }
+
+    async findByCartId(cartId: number){
+        return await UserModel.findOne({where: {cartId}});
+    }
+
+    async findUserById(id: number){
+        return await UserModel.findByPk(id)
+    }
     
 }

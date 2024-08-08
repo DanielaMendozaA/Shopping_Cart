@@ -6,4 +6,4 @@ export interface CustomRequest extends Request {
     user?: any;
 }
 
-export type Action = 'read' | 'create' | 'delete' | 'update';
+export type Action = 'read' | 'create' | 'delete' | 'update' | 'readOne';

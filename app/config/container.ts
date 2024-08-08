@@ -12,6 +12,7 @@ import OrderService from "../services/orderService";
 import PermissionRepository from "../repositories/permissions";
 import UserPermissions from "../middlewares/permissions";
 
+
 container.registerSingleton<ProductRepository>("ProductRepository", ProductRepository);
 container.registerSingleton<ProductService>("ProductService", ProductService);
 

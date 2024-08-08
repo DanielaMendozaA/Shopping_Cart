@@ -10,7 +10,6 @@ import {
 } from 'sequelize-typescript';
 import { CartModel } from './cartModel';
 import { ProductModel } from './productModel';
-import { OrderModel } from './orderModel';
 
 @Table({
     tableName: "product_cart",

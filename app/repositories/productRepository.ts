@@ -30,5 +30,9 @@ export default class ProductRepository{
     async findProductById(id: number){
         return await ProductModel.findByPk(id)
     }
+    
+    async findByIds(productIds: number[]): Promise<ProductModel[]> {
+        return ProductModel.findAll({ where: { id: productIds } });
+    }
 
 }

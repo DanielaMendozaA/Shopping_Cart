@@ -55,7 +55,7 @@ export default class ProductCartController{
             const productService: ProductCartService = container.resolve(ProductCartService);
             const id: number = parseInt(req.params.id);
             const quantityObj: Partial<ProductCart> =  req.body;
-            const stockToUpdate : number    = quantityObj.quantity as number
+            const stockToUpdate : number = quantityObj.quantity as number
             
             await productService.updateQuantity(id, stockToUpdate);
             res.status(200).json({
@@ -68,6 +68,58 @@ export default class ProductCartController{
                 status: 500,
                 message: err.message
             })
+        }
+    }
+
+    
+    static async getProductsCartsByUserIdAdmin(req: Request, res: Response): Promise<Response | undefined> {
+        try{
+        const user = req.body.user;
+        if(user.roleId == 1){
+            const userId = parseInt(req.params.userId);
+            console.log(userId, typeof userId);
+            
+            const productCartService = container.resolve(ProductCartService);
+            const productsCarts = await productCartService.getAllProductCartByUserId(userId);
+            return res.status(200).json({
+                status: 200,
+                user: user,
+                productsCarts: productsCarts
+            });
+        }
+        return res.status(401).json({
+            status: 401,
+            message: 'Unauthorized'
+        });
+        }catch(err:any){
+            res.status(500).json({
+                status: 500,
+                message: err.message
+            });
+        }
+    }
+
+    static async getProductsCartsByUserIdClient(req: Request, res: Response): Promise<Response | undefined> {
+        try{
+        const user = req.body.user;
+        if(user.roleId === 2){
+            const productCartService = container.resolve(ProductCartService);
+            const productsCarts = await productCartService.getAllProductCartByUserId(user.id);
+            return res.status(200).json({
+                status: 200,
+                user: user,
+                productsCarts: productsCarts
+            });
+        }
+        return res.status(401).json({
+            status: 401,
+            message: 'Unauthorized'
+        });
+        }catch(err:any){
+            res.status(500).json({
+                status: 500,
+                message: err.message
+            });
         }
     }
 }

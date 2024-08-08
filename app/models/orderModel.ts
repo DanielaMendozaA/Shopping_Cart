@@ -34,6 +34,12 @@ export class OrderModel extends Model<OrderModel>{
     @Column({
         type: DataType.INTEGER,
     })
-    productCartId!: number;
+    cartId!: number;
+
+    @Column({
+        type: DataType.DECIMAL(10, 2),
+        allowNull: false
+    })
+    total!: number;
 
 }

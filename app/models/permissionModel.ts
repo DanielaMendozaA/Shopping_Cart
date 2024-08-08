@@ -56,4 +56,9 @@ export class PermissionModel extends Model<PermissionModel>{
         type: DataType.BOOLEAN,
     })
     canGet!: boolean;
+
+    @Column({
+        type: DataType.BOOLEAN,
+    })
+    canGetByOne!: boolean;
 }

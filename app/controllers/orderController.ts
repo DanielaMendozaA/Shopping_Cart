@@ -84,31 +84,39 @@ export default class OrderController{
         
     }
 
-    static async getUserWithProducts(req: Request, res: Response){
-        const orderService: OrderService = container.resolve(OrderService);
-        const id: number = parseInt(req.params.id);
+   
+    static async getProductsByOrderId(req: Request, res: Response){
         try{
-            const orders = await orderService.getProductsByIdOrder(id);
-            if(!orders){
-                res.status(404).json({
-                    status: 404,
-                    message: 'User not found'
-                });
-                return;
-            }
+            const orderId: number = parseInt(req.params.orderId);
+            const orderService: OrderService = container.resolve(OrderService);
+            const products = await orderService.getProductsByOrderId(orderId)
             res.status(200).json({
                 status: 200,
-                orders
-            });
+                products
+            })
         }catch(err: any){
             res.status(500).json({
                 status: 500,
-                message: err.message});
+                message: err.message
+            })
         }
     }
 
-
-
-
+    static async getOrderByUserId(req: Request, res: Response){
+        try{
+            const userId: number = parseInt(req.params.userId);
+            const orderService: OrderService = container.resolve(OrderService);
+            const orders = await orderService.getOrderByUserId(userId)
+            res.status(200).json({
+                status: 200,
+                orders
+            })
+        }catch(err: any){
+            res.status(500).json({
+                status: 500,
+                message: err.message
+            })
+        }
+    }
 
 }
