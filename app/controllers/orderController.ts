@@ -25,8 +25,8 @@ export default class OrderController{
 
     static async createNewOrder(req: Request, res: Response){
         try{
-            const newOrder: OrderModel = req.body;
             const user: UserModel = req.body.user
+            const newOrder = {}
             const orderService: OrderService = container.resolve(OrderService);
             const order: OrderModel = await orderService.createOrder(user, newOrder)
             res.status(201).json({

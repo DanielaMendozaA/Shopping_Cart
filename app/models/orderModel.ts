@@ -37,7 +37,7 @@ export class OrderModel extends Model<OrderModel>{
     cartId!: number;
 
     @Column({
-        type: DataType.DECIMAL(10, 2),
+        type: DataType.FLOAT,
         allowNull: false
     })
     total!: number;
